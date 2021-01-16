@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <tableCellView id="thK-Eq-FSb" customClass="SearchListTableCellView" customModule="ImageSearch_macOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pDF-T8-wRV">
+                    <rect key="frame" x="10" y="10" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="hbh-Vs-aBU"/>
+                        <constraint firstAttribute="width" constant="50" id="np8-HG-sTI"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Ncw-Wz-f6U"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f6I-OM-oSo">
+                    <rect key="frame" x="68" y="35" width="224" height="25"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="9a6-89-dXz">
+                        <font key="font" metaFont="systemBold" size="21"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MBO-4J-rM9">
+                    <rect key="frame" x="68" y="10" width="224" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" title="Label" id="ooP-FN-T7I">
+                        <font key="font" metaFont="systemLight" size="13"/>
+                        <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="pDF-T8-wRV" secondAttribute="bottom" constant="10" id="7lS-wu-uOf"/>
+                <constraint firstAttribute="trailing" secondItem="MBO-4J-rM9" secondAttribute="trailing" constant="10" id="IQi-wg-Fvh"/>
+                <constraint firstAttribute="bottom" secondItem="MBO-4J-rM9" secondAttribute="bottom" constant="10" id="PBU-Yn-Drf"/>
+                <constraint firstAttribute="trailing" secondItem="f6I-OM-oSo" secondAttribute="trailing" constant="10" id="Y8W-e2-l7I"/>
+                <constraint firstItem="pDF-T8-wRV" firstAttribute="top" secondItem="thK-Eq-FSb" secondAttribute="top" constant="10" id="YDC-kc-wXt"/>
+                <constraint firstItem="pDF-T8-wRV" firstAttribute="leading" secondItem="thK-Eq-FSb" secondAttribute="leading" constant="10" id="Ypq-ng-1p8"/>
+                <constraint firstItem="f6I-OM-oSo" firstAttribute="top" secondItem="thK-Eq-FSb" secondAttribute="top" constant="10" id="eAS-y5-REs"/>
+                <constraint firstItem="MBO-4J-rM9" firstAttribute="leading" secondItem="f6I-OM-oSo" secondAttribute="leading" id="eqY-ed-v3r"/>
+                <constraint firstItem="f6I-OM-oSo" firstAttribute="leading" secondItem="pDF-T8-wRV" secondAttribute="trailing" constant="10" id="tKt-VC-FQx"/>
+            </constraints>
+            <connections>
+                <outlet property="leftImageView" destination="pDF-T8-wRV" id="PSR-OB-7nt"/>
+                <outlet property="mainTextField" destination="f6I-OM-oSo" id="85P-CO-G5d"/>
+                <outlet property="subTitleField" destination="MBO-4J-rM9" id="SBq-Ru-mmA"/>
+            </connections>
+            <point key="canvasLocation" x="-14" y="62"/>
+        </tableCellView>
+    </objects>
+</document>
