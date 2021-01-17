@@ -34,6 +34,8 @@ class SearchImageViewController: NSViewController {
         imageView.isHidden = true
         imageView.wantsLayer = true
         imageView.layer?.backgroundColor = nil
+        imageView.hasVerticalScroller = true
+        imageView.hasHorizontalScroller = true
         
         let menu = NSMenu()
         menu.addItem(NSMenuItem(title: "Download", action: #selector(downloadImage(_:)), keyEquivalent: ""))
@@ -42,9 +44,12 @@ class SearchImageViewController: NSViewController {
     
     public func update(_ searchData: SearchData) {
         self.searchData = searchData
-        if let url = searchData.originalImage {
-            imageView.setImageWith(url)
-            imageView.isHidden = false
+        DispatchQueue.main.async { [weak self] in
+            if let url = self?.searchData?.originalImage {
+                self?.imageView.setImageWith(url)
+                self?.imageView.isHidden = false
+                self?.imageView.zoomImageToFit(nil)
+            }
         }
     }
     

@@ -6,6 +6,8 @@ target 'ImageSearch-macOS' do
   use_frameworks!
   pod 'Kingfisher', '~> 6.0'
   pod 'RxSwift', '6.0.0'
+  pod 'RxCocoa', '6.0.0'
+  pod 'Alamofire', '~> 5.2'
 
   # Pods for ImageSearch-macOS
 

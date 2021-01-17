@@ -6,11 +6,16 @@
 //
 
 import Cocoa
+import RxSwift
+import RxCocoa
 
 class SearchListViewController: NSViewController {
     private var searchField: NSSearchField!
     private var separatorView: NSView!
     private var tableView: NSTableView!
+    
+    private var viewModel: SearchListViewModel = .init()
+    private var disposeBag: DisposeBag = .init()
     
     override func loadView() {
         let visualEffectView: NSVisualEffectView = .init()
@@ -23,6 +28,7 @@ class SearchListViewController: NSViewController {
         configureSearchField()
         configureSeparatorView()
         configureTableView()
+        bind()
     }
     
     override func viewWillAppear() {
@@ -85,6 +91,31 @@ class SearchListViewController: NSViewController {
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
+    private func bind() {
+        viewModel.searchData
+            .withUnretained(self)
+            .observe(on: MainScheduler.instance)
+            .subscribe(
+                onNext: { (weakSelf, _) in
+                    weakSelf.tableView.reloadData()
+                },
+                onError: { [weak self] error in
+                    self?.presentAlert(error)
+                }
+            )
+            .disposed(by: disposeBag)
+        
+        searchField.rx.text
+            .withUnretained(viewModel)
+            .subscribe { (weakObject, text) in weakObject.request(text: text ?? "") }
+            .disposed(by: disposeBag)
+    }
+    
+    private func presentAlert(_ error: Error) {
+        let alert: NSAlert = .init(error: error)
+        alert.runModal()
+    }
+    
     @objc func openDocURL(_ sender: AnyObject) {
         let clickedRow = tableView.clickedRow
         guard let cell = tableView.view(atColumn: 0, row: clickedRow, makeIfNecessary: false) as? SearchListTableCellView,
@@ -96,7 +127,7 @@ class SearchListViewController: NSViewController {
 
 extension SearchListViewController: NSTableViewDelegate, NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        300
+        viewModel.getSearchData().count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -106,7 +137,15 @@ extension SearchListViewController: NSTableViewDelegate, NSTableViewDataSource {
         } else {
             cell = SearchListTableCellView.fromNib()
         }
-        cell.configure(SearchData.getSampleData())
+        
+        let searchData = viewModel.getSearchData()
+        
+        guard row < searchData.count else {
+            cell.configure(.getSampleData())
+            return cell
+        }
+        
+        cell.configure(searchData[row])
         return cell
     }
     
@@ -115,10 +154,28 @@ extension SearchListViewController: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        guard let splitViewController = parent as? SearchSplitViewController,
-              let imageViewController = splitViewController.imageViewController
-              else { return }
-        imageViewController.update(SearchData.getSampleData())
+        guard let splitViewController = parent as? SearchSplitViewController else {
+            return
+        }
+        guard let imageViewController = splitViewController.imageViewController else {
+            return
+        }
+        guard let tableView = notification.object as? NSTableView else {
+            return
+        }
+        
+        let clickedRow = tableView.selectedRow
+        
+        guard let cell = tableView.view(atColumn: 0, row: clickedRow, makeIfNecessary: false) as? SearchListTableCellView else {
+            return
+            
+        }
+        
+        guard let searchData = cell.searchData else {
+            return
+        }
+        
+        imageViewController.update(searchData)
         
     }
 }

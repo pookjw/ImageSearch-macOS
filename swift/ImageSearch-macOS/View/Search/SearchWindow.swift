@@ -22,5 +22,15 @@ class SearchWindow: NSWindow {
         titleVisibility = .hidden
         isMovableByWindowBackground = true
         styleMask = [styleMask, .fullSizeContentView]
+        
+        delegate = self
+    }
+}
+
+extension SearchWindow: NSWindowDelegate {
+    func windowDidBecomeMain(_ notification: Notification) {
+        if let searchMenu = NSApp.mainMenu as? SearchMenu {
+            searchMenu.updateMenu(for: .search)
+        }
     }
 }

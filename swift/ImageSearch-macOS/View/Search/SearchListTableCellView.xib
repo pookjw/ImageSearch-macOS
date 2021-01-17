@@ -19,9 +19,15 @@
                         <constraint firstAttribute="width" constant="50" id="np8-HG-sTI"/>
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Ncw-Wz-f6U"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="wantsLayer" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f6I-OM-oSo">
-                    <rect key="frame" x="68" y="35" width="224" height="25"/>
+                    <rect key="frame" x="78" y="35" width="214" height="25"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="9a6-89-dXz">
                         <font key="font" metaFont="systemBold" size="21"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -29,7 +35,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MBO-4J-rM9">
-                    <rect key="frame" x="68" y="10" width="224" height="16"/>
+                    <rect key="frame" x="78" y="10" width="214" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" title="Label" id="ooP-FN-T7I">
                         <font key="font" metaFont="systemLight" size="13"/>
                         <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
@@ -46,7 +52,7 @@
                 <constraint firstItem="pDF-T8-wRV" firstAttribute="leading" secondItem="thK-Eq-FSb" secondAttribute="leading" constant="10" id="Ypq-ng-1p8"/>
                 <constraint firstItem="f6I-OM-oSo" firstAttribute="top" secondItem="thK-Eq-FSb" secondAttribute="top" constant="10" id="eAS-y5-REs"/>
                 <constraint firstItem="MBO-4J-rM9" firstAttribute="leading" secondItem="f6I-OM-oSo" secondAttribute="leading" id="eqY-ed-v3r"/>
-                <constraint firstItem="f6I-OM-oSo" firstAttribute="leading" secondItem="pDF-T8-wRV" secondAttribute="trailing" constant="10" id="tKt-VC-FQx"/>
+                <constraint firstItem="f6I-OM-oSo" firstAttribute="leading" secondItem="pDF-T8-wRV" secondAttribute="trailing" constant="20" id="tKt-VC-FQx"/>
             </constraints>
             <connections>
                 <outlet property="leftImageView" destination="pDF-T8-wRV" id="PSR-OB-7nt"/>
