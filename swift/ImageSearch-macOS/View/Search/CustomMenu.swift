@@ -1,5 +1,5 @@
 //
-//  SearchMenu.swift
+//  CustomMenu.swift
 //  ImageSearch-macOS
 //
 //  Created by Jinwoo Kim on 1/17/21.
@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class SearchMenu: NSMenu {
+class CustomMenu: NSMenu {
     enum WindowType {
         case search
     }
@@ -33,11 +33,16 @@ class SearchMenu: NSMenu {
     }
     
     private func setSearchMenu() {
+        let resetFavoritesMenuItem: NSMenuItem = .init(title: "Reset Favorites", action: #selector(resetFavorites(_:)), keyEquivalent: "")
+        resetFavoritesMenuItem.target = self
+        
         let searchMenuItem: NSMenuItem = .init()
         searchMenuItem.submenu = NSMenu(title: "File")
         searchMenuItem.submenu?.items = [
             NSMenuItem(title: "Open URL", action: nil, keyEquivalent: ""),
-            NSMenuItem(title: "Download image", action: nil, keyEquivalent: "")
+            NSMenuItem(title: "Download image", action: nil, keyEquivalent: ""),
+            NSMenuItem.separator(),
+            resetFavoritesMenuItem
         ]
         
         items = [getAppMenuItem(), searchMenuItem]
@@ -56,5 +61,9 @@ class SearchMenu: NSMenu {
         ]
         
         return appMenuItem
+    }
+    
+    @objc private func resetFavorites(_ sender: AnyObject) {
+        FavoriteModel.shared.reset()
     }
 }

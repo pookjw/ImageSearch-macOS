@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="FavoriteListCollectionViewItem" customModule="ImageSearch_macOS" customModuleProvider="target">
+            <connections>
+                <outlet property="leftImageView" destination="1Eo-Gy-De3" id="poX-AX-Sbr"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Eo-Gy-De3">
+                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="LK5-Ph-FjR"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="1Eo-Gy-De3" secondAttribute="bottom" id="42A-zV-hQT"/>
+                <constraint firstAttribute="trailing" secondItem="1Eo-Gy-De3" secondAttribute="trailing" id="YN0-zl-yjX"/>
+                <constraint firstItem="1Eo-Gy-De3" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="f2s-F5-pQ5"/>
+                <constraint firstItem="1Eo-Gy-De3" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="y3E-Lf-tda"/>
+            </constraints>
+            <point key="canvasLocation" x="-185" y="154"/>
+        </customView>
+        <collectionViewItem id="3mC-F0-nbY" customClass="FavoriteListCollectionViewItem" customModule="ImageSearch_macOS" customModuleProvider="target"/>
+    </objects>
+</document>

@@ -17,7 +17,8 @@ class SearchListTableCellView: NSTableCellView {
     
     public func configure(_ searchData: SearchData) {
         self.searchData = searchData
-        leftImageView.kf.setImage(with: searchData.thumbnailImage)
+        leftImageView.kf.indicatorType = .activity
+        leftImageView.kf.setImage(with: searchData.thumbnailImage, placeholder: nil)
         mainTextField.stringValue = searchData.title ?? "(nil)"
         subTitleField.stringValue = searchData.docURL?.absoluteString ?? "(nil)"
     }

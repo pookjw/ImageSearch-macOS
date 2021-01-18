@@ -29,6 +29,20 @@ final class SearchListViewModel {
         return _searchData
     }
     
+    public func setFavorite(searchData: SearchData) {
+        FavoriteModel.shared.searchDataSource.append(searchData)
+    }
+    
+    public func removeFavorite(searchData: SearchData) {
+        if let idx = FavoriteModel.shared.searchDataSource.firstIndex(of: searchData) {
+            FavoriteModel.shared.searchDataSource.remove(at: idx)
+        }
+    }
+    
+    public func isFavorite(searchData: SearchData) -> Bool {
+        return FavoriteModel.shared.searchDataSource.contains(searchData)
+    }
+    
     private func bind() {
         SearchModel.shared.receivedData
             .withUnretained(self)

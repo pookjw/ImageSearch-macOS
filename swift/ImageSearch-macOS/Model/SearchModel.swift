@@ -52,4 +52,6 @@ final class SearchModel {
                 }
             }
     }
+    
+    private init() {}
 }

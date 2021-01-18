@@ -29,7 +29,7 @@ class SearchWindow: NSWindow {
 
 extension SearchWindow: NSWindowDelegate {
     func windowDidBecomeMain(_ notification: Notification) {
-        if let searchMenu = NSApp.mainMenu as? SearchMenu {
+        if let searchMenu = NSApp.mainMenu as? CustomMenu {
             searchMenu.updateMenu(for: .search)
         }
     }

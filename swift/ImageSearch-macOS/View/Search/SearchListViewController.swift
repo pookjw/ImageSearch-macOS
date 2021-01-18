@@ -75,7 +75,7 @@ class SearchListViewController: NSViewController {
         tableView.register(NSNib(nibNamed: "SearchListTableCellView", bundle: .main), forIdentifier: identifier)
         
         let menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "Open URL", action: #selector(openDocURL(_:)), keyEquivalent: ""))
+        menu.delegate = self
         tableView.menu = menu
         
         let scrollView: NSScrollView = .init()
@@ -105,6 +105,14 @@ class SearchListViewController: NSViewController {
             )
             .disposed(by: disposeBag)
         
+        FavoriteModel.shared.searchData
+            .withUnretained(self)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { (weakSelf, _) in
+                weakSelf.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
         searchField.rx.text
             .withUnretained(viewModel)
             .subscribe { (weakObject, text) in weakObject.request(text: text ?? "") }
@@ -116,12 +124,46 @@ class SearchListViewController: NSViewController {
         alert.runModal()
     }
     
-    @objc func openDocURL(_ sender: AnyObject) {
+    @objc private func setFavorite(_ sender: AnyObject) {
+        let clickedRow = tableView.clickedRow
+        guard let cell = tableView.view(atColumn: 0, row: clickedRow, makeIfNecessary: false) as? SearchListTableCellView,
+              let searchData = cell.searchData
+              else { return }
+        viewModel.setFavorite(searchData: searchData)
+    }
+    
+    @objc private func removeFavorite(_ sender: AnyObject) {
+        let clickedRow = tableView.clickedRow
+        guard let cell = tableView.view(atColumn: 0, row: clickedRow, makeIfNecessary: false) as? SearchListTableCellView,
+              let searchData = cell.searchData
+              else { return }
+        viewModel.removeFavorite(searchData: searchData)
+    }
+    
+    @objc private func openDocURL(_ sender: AnyObject) {
         let clickedRow = tableView.clickedRow
         guard let cell = tableView.view(atColumn: 0, row: clickedRow, makeIfNecessary: false) as? SearchListTableCellView,
               let url = cell.searchData?.docURL
               else { return }
         NSWorkspace.shared.open(url)
+    }
+}
+
+extension SearchListViewController: NSMenuDelegate {
+    func menuWillOpen(_ menu: NSMenu) {
+        let clickedRow = tableView.clickedRow
+        guard let cell = tableView.view(atColumn: 0, row: clickedRow, makeIfNecessary: false) as? SearchListTableCellView,
+              let searchData = cell.searchData
+              else { return }
+        menu.items.removeAll()
+        
+        if viewModel.isFavorite(searchData: searchData) {
+            menu.addItem(NSMenuItem(title: "Remove Favorite", action: #selector(removeFavorite(_:)), keyEquivalent: ""))
+        } else {
+            menu.addItem(NSMenuItem(title: "Set as Favorite", action: #selector(setFavorite(_:)), keyEquivalent: ""))
+        }
+        
+        menu.addItem(NSMenuItem(title: "Open URL", action: #selector(openDocURL(_:)), keyEquivalent: ""))
     }
 }
 
