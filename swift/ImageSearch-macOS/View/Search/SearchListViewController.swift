@@ -143,9 +143,9 @@ class SearchListViewController: NSViewController {
     @objc private func openDocURL(_ sender: AnyObject) {
         let clickedRow = tableView.clickedRow
         guard let cell = tableView.view(atColumn: 0, row: clickedRow, makeIfNecessary: false) as? SearchListTableCellView,
-              let url = cell.searchData?.docURL
+              let searchData = cell.searchData
               else { return }
-        NSWorkspace.shared.open(url)
+        ActionModel.shared.openDoc(searchData)
     }
 }
 

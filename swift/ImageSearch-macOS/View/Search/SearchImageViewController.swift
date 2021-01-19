@@ -54,6 +54,7 @@ class SearchImageViewController: NSViewController {
     }
     
     @objc func downloadImage(_ sender: AnyObject) {
-        
+        guard let searchData = searchData else { return }
+        ActionModel.shared.save(searchData)
     }
 }

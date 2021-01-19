@@ -35,6 +35,7 @@
 		F3B1FB8225B3426C0058F2FA /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1FB8125B3426C0058F2FA /* SearchData.swift */; };
 		F3B1FB8B25B3452F0058F2FA /* NSView+fromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1FB8A25B3452F0058F2FA /* NSView+fromNib.swift */; };
 		F3B1FB9125B354C00058F2FA /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1FB9025B354C00058F2FA /* SearchModel.swift */; };
+		F3D6E49D25B73C90005FCA8E /* ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E49C25B73C90005FCA8E /* ActionModel.swift */; };
 		F3F23EE025B46F05006DC57E /* CustomMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F23EDF25B46F05006DC57E /* CustomMenu.swift */; };
 		F3F23EE525B480CA006DC57E /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F23EE425B480CA006DC57E /* SearchListViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		F3B1FB8125B3426C0058F2FA /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		F3B1FB8A25B3452F0058F2FA /* NSView+fromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+fromNib.swift"; sourceTree = "<group>"; };
 		F3B1FB9025B354C00058F2FA /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		F3D6E49C25B73C90005FCA8E /* ActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionModel.swift; sourceTree = "<group>"; };
 		F3F23EDF25B46F05006DC57E /* CustomMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenu.swift; sourceTree = "<group>"; };
 		F3F23EE425B480CA006DC57E /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +239,7 @@
 				F3B1FB7C25B342370058F2FA /* Entity */,
 				F3B1FB9025B354C00058F2FA /* SearchModel.swift */,
 				F3A5F5EC25B5DB2F00EC5214 /* FavoriteModel.swift */,
+				F3D6E49C25B73C90005FCA8E /* ActionModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				F3B1FB8B25B3452F0058F2FA /* NSView+fromNib.swift in Sources */,
 				F3B1FB7E25B3424E0058F2FA /* ReceivedData.swift in Sources */,
 				F3A5F5EA25B5D86100EC5214 /* NSCollectionViewItem+fromNib.swift in Sources */,
+				F3D6E49D25B73C90005FCA8E /* ActionModel.swift in Sources */,
 				F3B1FB8225B3426C0058F2FA /* SearchData.swift in Sources */,
 				F3F23EE025B46F05006DC57E /* CustomMenu.swift in Sources */,
 				F351F20325B3046600A7BF21 /* SearchWindow.swift in Sources */,
