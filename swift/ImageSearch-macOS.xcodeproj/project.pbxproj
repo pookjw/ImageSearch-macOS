@@ -36,6 +36,7 @@
 		F3B1FB8B25B3452F0058F2FA /* NSView+fromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1FB8A25B3452F0058F2FA /* NSView+fromNib.swift */; };
 		F3B1FB9125B354C00058F2FA /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1FB9025B354C00058F2FA /* SearchModel.swift */; };
 		F3D6E49D25B73C90005FCA8E /* ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E49C25B73C90005FCA8E /* ActionModel.swift */; };
+		F3D6E4A325B748BB005FCA8E /* Array+moveItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E4A225B748BB005FCA8E /* Array+moveItem.swift */; };
 		F3F23EE025B46F05006DC57E /* CustomMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F23EDF25B46F05006DC57E /* CustomMenu.swift */; };
 		F3F23EE525B480CA006DC57E /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F23EE425B480CA006DC57E /* SearchListViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -100,6 +101,7 @@
 		F3B1FB8A25B3452F0058F2FA /* NSView+fromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+fromNib.swift"; sourceTree = "<group>"; };
 		F3B1FB9025B354C00058F2FA /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		F3D6E49C25B73C90005FCA8E /* ActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionModel.swift; sourceTree = "<group>"; };
+		F3D6E4A225B748BB005FCA8E /* Array+moveItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+moveItem.swift"; sourceTree = "<group>"; };
 		F3F23EDF25B46F05006DC57E /* CustomMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenu.swift; sourceTree = "<group>"; };
 		F3F23EE425B480CA006DC57E /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -259,6 +261,7 @@
 				F3B1FB8A25B3452F0058F2FA /* NSView+fromNib.swift */,
 				F3A5F5E925B5D86100EC5214 /* NSCollectionViewItem+fromNib.swift */,
 				F3A5F5F425B5E63800EC5214 /* UserDefaults+Objects.swift */,
+				F3D6E4A225B748BB005FCA8E /* Array+moveItem.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				F3A5F5F125B5E02200EC5214 /* FavoriteListViewModel.swift in Sources */,
 				F3A5F5F525B5E63800EC5214 /* UserDefaults+Objects.swift in Sources */,
 				F3A5F60925B5E7A100EC5214 /* ImageSearch_macOS_Widget.intentdefinition in Sources */,
+				F3D6E4A325B748BB005FCA8E /* Array+moveItem.swift in Sources */,
 				F351F20825B305C800A7BF21 /* SearchListViewController.swift in Sources */,
 				F351F1F525B2FE5800A7BF21 /* main.swift in Sources */,
 				F3B1FB6C25B339620058F2FA /* SearchListTableCellView.swift in Sources */,

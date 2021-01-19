@@ -25,8 +25,8 @@ final class FavoriteModel {
     private let userDefaultsKey: String = "Favorites"
     
     public func reset() {
-        userDefaults.removeObject(forKey: userDefaultsKey)
         searchDataSource.removeAll()
+        userDefaults.removeObject(forKey: userDefaultsKey)
     }
     
     private init() {

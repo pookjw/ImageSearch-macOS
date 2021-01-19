@@ -13,14 +13,8 @@ final class ActionModel {
     private init() {}
     
     public func save(_ searchData: SearchData) {
-        DispatchQueue.global().async {
-            guard let imageURL: URL = searchData.originalImage,
-                  let data: Data = try? .init(contentsOf: imageURL),
-                  let image: NSImage = NSImage(data: data),
-                  let tiffData: Data = image.tiffRepresentation,
-                  let imageRep: NSBitmapImageRep = NSBitmapImageRep(data: tiffData),
-                  let png: Data = imageRep.representation(using: .png, properties: [:])
-                  else { return }
+        DispatchQueue.global().async { [weak self] in
+            guard let png: Data = self?.convertToPng(searchData) else { return }
         
             DispatchQueue.main.async {
                 let panel: NSSavePanel = .init()
@@ -46,5 +40,24 @@ final class ActionModel {
         DispatchQueue.main.async {
             NSWorkspace.shared.open(url)
         }
+    }
+    
+    public func convertToPng(_ searchData: SearchData) -> Data? {
+        guard let imageURL: URL = searchData.originalImage,
+              let data: Data = try? .init(contentsOf: imageURL),
+              let image: NSImage = NSImage(data: data),
+              let tiffData: Data = image.tiffRepresentation,
+              let imageRep: NSBitmapImageRep = NSBitmapImageRep(data: tiffData),
+              let png: Data = imageRep.representation(using: .png, properties: [:])
+              else { return nil }
+        return png
+    }
+    
+    public func convertToImage(_ searchData: SearchData) -> NSImage? {
+        guard let imageURL: URL = searchData.originalImage,
+              let data: Data = try? .init(contentsOf: imageURL),
+              let image: NSImage = NSImage(data: data)
+              else { return nil }
+        return image
     }
 }

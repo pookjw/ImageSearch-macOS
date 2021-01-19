@@ -24,12 +24,28 @@ class FavoriteListViewController: NSViewController {
         bind()
     }
     
+    override func keyUp(with event: NSEvent) {
+        super.keyUp(with: event)
+        
+        guard FavoriteModel.shared.searchDataSource.count > 0 else { return }
+        guard let deleteUnicodeScalar: UnicodeScalar = UnicodeScalar(NSDeleteCharacter) else { return }
+        
+        if event.charactersIgnoringModifiers == String(deleteUnicodeScalar) {
+            let selectedIndexPaths: Set<IndexPath> = collectionView.selectionIndexPaths
+            viewModel.removeItems(with: selectedIndexPaths)
+        }
+    }
+    
     private func configureCollectionView() {
         collectionView = .init()
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.wantsLayer = true
         collectionView.layer?.backgroundColor = .clear
+        collectionView.isSelectable = true
+        collectionView.allowsEmptySelection = true
+        collectionView.allowsMultipleSelection = true
+        collectionView.registerForDraggedTypes([NSPasteboard.PasteboardType(kUTTypeURL as String)])
         
         let flowLayout: NSCollectionViewFlowLayout = .init()
         flowLayout.itemSize = .init(width: 128, height: 128)
@@ -88,5 +104,27 @@ extension FavoriteListViewController: NSCollectionViewDelegate, NSCollectionView
         
         cell.configure(searchData)
         return cell
+    }
+    
+    // Dragging
+    func collectionView(_ collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionView.DropOperation>) -> NSDragOperation {
+        return .move
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, draggingSession session: NSDraggingSession, willBeginAt screenPoint: NSPoint, forItemsAt indexPaths: Set<IndexPath>) {
+        viewModel.itemsBeingDragged = indexPaths
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: IndexPath, dropOperation: NSCollectionView.DropOperation) -> Bool {
+        guard let itemsBeingDragged: Set<IndexPath> = viewModel.itemsBeingDragged else { return false }
+        viewModel.performInternalDrag(with: itemsBeingDragged, to: indexPath)
+        return true
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, pasteboardWriterForItemAt indexPath: IndexPath) -> NSPasteboardWriting? {
+        guard let imageURL: URL = viewModel.getFavorite(idx: indexPath.item)?.originalImage else {
+            return nil
+        }
+        return imageURL as NSPasteboardWriting
     }
 }
