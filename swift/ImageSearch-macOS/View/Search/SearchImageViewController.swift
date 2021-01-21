@@ -49,12 +49,28 @@ class SearchImageViewController: NSViewController {
                 self?.imageView.setImageWith(url)
                 self?.imageView.isHidden = false
                 self?.imageView.zoomImageToFit(nil)
+                self?.configureMenu()
             }
         }
     }
     
+    private func configureMenu() {
+        guard let customMenu: CustomMenu = NSApp.mainMenu as? CustomMenu else { return }
+        
+        customMenu.openURLMenuItem?.target = self
+        customMenu.openURLMenuItem?.action = #selector(openURL(_:))
+        
+        customMenu.downloadImageMenuItem?.target = self
+        customMenu.downloadImageMenuItem?.action = #selector(downloadImage(_:))
+    }
+    
+    @objc private func openURL(_ sender: AnyObject) {
+        guard let searchData: SearchData = searchData else { return }
+        ActionModel.shared.openDoc(searchData)
+    }
+    
     @objc func downloadImage(_ sender: AnyObject) {
-        guard let searchData = searchData else { return }
+        guard let searchData: SearchData  = searchData else { return }
         ActionModel.shared.save(searchData)
     }
 }

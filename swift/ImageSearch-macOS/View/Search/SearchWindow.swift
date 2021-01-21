@@ -23,14 +23,14 @@ class SearchWindow: NSWindow {
         isMovableByWindowBackground = true
         styleMask = [styleMask, .fullSizeContentView]
         
-        delegate = self
+//        delegate = self
     }
 }
 
-extension SearchWindow: NSWindowDelegate {
-    func windowDidBecomeMain(_ notification: Notification) {
-        if let searchMenu = NSApp.mainMenu as? CustomMenu {
-            searchMenu.updateMenu(for: .search)
-        }
-    }
-}
+//extension SearchWindow: NSWindowDelegate {
+//    func windowDidBecomeMain(_ notification: Notification) {
+//        if let searchMenu = NSApp.mainMenu as? CustomMenu {
+//            searchMenu.updateMenu(for: .search)
+//        }
+//    }
+//}

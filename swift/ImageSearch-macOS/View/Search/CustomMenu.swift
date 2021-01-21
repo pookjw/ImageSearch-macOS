@@ -8,6 +8,9 @@
 import Cocoa
 
 class CustomMenu: NSMenu {
+    public weak var openURLMenuItem: NSMenuItem?
+    public weak var downloadImageMenuItem: NSMenuItem?
+    
     enum WindowType {
         case search
     }
@@ -33,14 +36,20 @@ class CustomMenu: NSMenu {
     }
     
     private func setSearchMenu() {
+        let openURLMenuItem: NSMenuItem = .init(title: "Open URL", action: nil, keyEquivalent: "")
+        self.openURLMenuItem = openURLMenuItem
+        
+        let downloadImageMenuItem: NSMenuItem = .init(title: "Download image", action: nil, keyEquivalent: "")
+        self.downloadImageMenuItem = downloadImageMenuItem
+        
         let resetFavoritesMenuItem: NSMenuItem = .init(title: "Reset Favorites", action: #selector(resetFavorites(_:)), keyEquivalent: "")
         resetFavoritesMenuItem.target = self
         
         let searchMenuItem: NSMenuItem = .init()
         searchMenuItem.submenu = NSMenu(title: "File")
         searchMenuItem.submenu?.items = [
-            NSMenuItem(title: "Open URL", action: nil, keyEquivalent: ""),
-            NSMenuItem(title: "Download image", action: nil, keyEquivalent: ""),
+            openURLMenuItem,
+            downloadImageMenuItem,
             NSMenuItem.separator(),
             resetFavoritesMenuItem
         ]

@@ -26,7 +26,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     private func configureMainMenu() {
-        NSApp.mainMenu = CustomMenu(title: "")
+        let customMenu: CustomMenu = .init(title: "")
+        customMenu.updateMenu(for: .search)
+        NSApp.mainMenu = customMenu
     }
     
     private func configureStatusBarItem() {
